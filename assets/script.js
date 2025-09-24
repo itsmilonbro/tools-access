@@ -1,38 +1,43 @@
-// Static user list
-const users = [
-  { phone: '01955255066', name: 'Milon Hossain', password: '12345' },
-  { phone: '01400115520', name: 'Mohin-মহিন, password: '12345' }
-];
+// Simple login simulation (replace with real authentication in production)
+document.addEventListener('DOMContentLoaded', () => {
+  const loginForm = document.getElementById('loginForm');
+  if (loginForm) {
+    loginForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      // Simulated check - in production use secure backend
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      if (username === 'admin' && password === 'password') {
+        localStorage.setItem('loggedIn', 'true');
+        window.location.href = 'dashboard.html';
+      } else {
+        alert('Invalid username or password!');
+      }
+    });
+  }
 
-// Login logic
-if (document.getElementById('loginForm')) {
-  document.getElementById('loginForm').addEventListener('submit', e => {
-    e.preventDefault();
-    const phone = e.target.phone.value.trim();
-    const pass = e.target.password.value;
-    if (!e.target.agree.checked) {
-      return alert('You must agree to the terms.');
+  // Protect dashboard page
+  if (window.location.pathname.endsWith('dashboard.html')) {
+    if (localStorage.getItem('loggedIn') !== 'true') {
+      window.location.href = 'index.html';
     }
-    const user = users.find(u => u.phone === phone && u.password === pass);
-    if (!user) {
-      return alert('Invalid credentials.');
-    }
-    localStorage.setItem('loggedUser', JSON.stringify(user));
-    location.href = 'dashboard.html';
-  });
+  }
+});
+
+// Sidebar navigation for dashboard
+function loadTool(toolFile, element) {
+  const frame = document.getElementById('toolFrame');
+  if (frame) {
+    frame.src = 'tools/' + toolFile;
+    // Update active class
+    const navItems = document.querySelectorAll('.sidebar nav li');
+    navItems.forEach(li => li.classList.remove('active'));
+    if (element) element.classList.add('active');
+  }
 }
 
-// Dashboard logic
-if (document.getElementById('logoutBtn')) {
-  const user = JSON.parse(localStorage.getItem('loggedUser'));
-  if (!user) return location.href = 'index.html';
-  document.getElementById('userNameDisplay').textContent = user.name;
-  document.getElementById('logoutBtn').addEventListener('click', () => {
-    localStorage.removeItem('loggedUser');
-    location.href = 'index.html';
-  });
-  document.querySelectorAll('[data-link]').forEach(item => {
-    item.addEventListener('click', () => {
-      document.getElementById('contentFrame').src = item.dataset.link;
-    });
-  });
+// Logout function
+function logout() {
+  localStorage.removeItem('loggedIn');
+  window.location.href = 'index.html';
+}
