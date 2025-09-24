@@ -26,7 +26,7 @@
 
   <div class="dashboard">
     <aside class="sidebar">
-      <h2>Tool Categories List</h2>
+      <h2>Categories List</h2>
       <nav>
         <ul>
           <li id="nav-construction" class="active" onclick="loadTool('construction.html', this)">Construction</li>
@@ -40,6 +40,7 @@
               <li onclick="loadTool('round-logs-measurement.html', this)">Prices</li>
             </ul>
           <li id="nav-measurement" onclick="loadTool('measurement.html', this)">Measurement</li>
+          <li id="nav-thai-aluminium-price-calculation" onclick="loadTool('thai-aluminium-price-calculation.html', this)">Thai Aluminium</li>
           <li id="nav-soot-to-mm-to-inch-convert" onclick="loadTool('soot-to-mm-to-inch-convert.html', this)">SootInches Inches Convert</li>
           <li id="nav-Size-Wood-Calculation" onclick="loadTool('Size-Wood-Calculation.html', this)">Size Wood Calc -সাইজ কাঠ</li>
           <li id="nav-round-logs-measurement" onclick="loadTool('round-logs-measurement.html',this)">Roundund LOGS -গোলাই কাঠ</li>
@@ -51,7 +52,7 @@
     <section class="content">
       <!-- content area set to be 95% width visually inside content (keeps iframe id the same) -->
       <div class="content-inner">
-        <iframe src="tools/soot-to-mm-to-inch-convert.html" id="toolFrame" title="Tool Display Area"></iframe>
+        <iframe src="tools/construction.html" id="toolFrame" title="Tool Display Area"></iframe>
       </div>
     </section>
   </div>
@@ -94,7 +95,7 @@
       syncOnResize();
 
       // Accessibility: allow Escape to close mobile sidebar
-      document.addEventListener('keydown', function(e){ if(e.key === 'Escape'){ menuToggle.checked = false; syncOnResize(); } });
+   //   document.addEventListener('keydown', function(e){ if(e.key === 'Escape'){ menuToggle.checked = false; syncOnResize(); } });
 
     })();
   </script>
