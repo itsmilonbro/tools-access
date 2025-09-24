@@ -2,105 +2,39 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Portal Dashboard -Tools -Software | Welcome Dashboard</title>
+  <title>Portal Dashboard -Tools Software | Welcome Dashboard</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="assets/dashboard-ui.css">
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
   <header>
-    <div class="header-row">
-      <!-- Menu toggle for small screens (keeps existing IDs/classes unchanged) -->
-      <input type="checkbox" id="menuToggle" aria-hidden="true">
-      <label for="menuToggle" class="menu-toggle" aria-hidden="true">☰</label>
-
-      <div class="header-text">
-        <h1>Portal Dashboard: Tools for Measurements Calculation</h1>
-        <p style="font-size:1.1em;color:#555;">Distribution project for <a href="https://almadinatraders-savar.blogspot.com"> AL-Madina Traders</a></p>
-        <p style="font-size:1.1em;color:#555;">Develop & Published by <a href="https://facebook.com/itsmilonbro">Freelancer Milon </a></p>
-      </div>
-
-      <!-- Mobile logout quick button (keeps original #logoutBtn present in sidebar too) -->
-      <button id="mobileLogout" class="mobile-logout" aria-hidden="true" onclick="document.getElementById('logoutBtn').click()">Logout</button>
-    </div>
-  </header>
-
-  <div class="dashboard">
-    <aside class="sidebar">
-      <h2>Categories List</h2>
-      <nav>
-        <ul>
-          <li id="nav-construction" class="active" onclick="loadTool('construction.html', this)">Construction</li>
-
-          <!-- Example submenu: we keep the original li and id intact and add a submenu toggle button so existing onclick still works -->
-          <li id="nav-timber" class="has-submenu" onclick="loadTool('timber.html', this)">
-            Timber
-            <button class="submenu-toggle" aria-label="Open submenu" onclick="event.stopPropagation()">▾</button>
-            <ul class="submenu" aria-hidden="true">
-              <li onclick="loadTool('Size-Wood-Calculation.html', this)">Size Wood -সাইজ কাঠ</li>
-              <li onclick="loadTool('round-logs-measurement.html', this)">Prices</li>
-            </ul>
-          <li id="nav-measurement" onclick="loadTool('measurement.html', this)">Measurement</li>
-          <li id="nav-thai-aluminium-price-calculation" onclick="loadTool('thai-aluminium-price-calculation.html', this)">Thai Aluminium</li>
-          <li id="nav-soot-to-mm-to-inch-convert" onclick="loadTool('soot-to-mm-to-inch-convert.html', this)">SootInches Inches Convert</li>
-          <li id="nav-Size-Wood-Calculation" onclick="loadTool('Size-Wood-Calculation.html', this)">Size Wood Calc -সাইজ কাঠ</li>
-          <li id="nav-round-logs-measurement" onclick="loadTool('round-logs-measurement.html',this)">Roundund LOGS -গোলাই কাঠ</li>
-        </ul>
-      </nav>
-      <button id="logoutBtn" onclick="logout()">Logout</button>
-    </aside>
-
-    <section class="content">
-      <!-- content area set to be 95% width visually inside content (keeps iframe id the same) -->
-      <div class="content-inner">
-        <iframe src="tools/construction.html" id="toolFrame" title="Tool Display Area"></iframe>
-      </div>
-    </section>
-  </div>
-
-  <footer>
-    <nav>
-      <a href="licenses.html">Licenses</a> |
-      <a href="policy.html">Policy</a> |
-      <a href="disclaimer.html">Disclaimer</a>
-    </nav>
-    &copy; 2025 AL-Madina Traders. All rights reserved.
-  </footer>
-
-  <!-- Minimal JS to handle toggle & submenu behaviour. This is tiny and unobtrusive so your existing assets/script.js still works. 
-  <script>
-    (function(){
-      // Toggle submenu open/close
-      document.querySelectorAll('.submenu-toggle').forEach(function(btn){
-        btn.addEventListener('click', function(){
-          var li = btn.closest('.has-submenu');
-          var sub = li.querySelector('.submenu');
-          var open = sub.getAttribute('aria-hidden') === 'false';
-          sub.setAttribute('aria-hidden', open ? 'true' : 'false');
-          li.classList.toggle('submenu-open', !open);
-        });
-      });
-
-      // Close sidebar automatically when menuToggle is unchecked on larger screens resize
-      var menuToggle = document.getElementById('menuToggle');
-      function syncOnResize(){
-        if(window.innerWidth > 1020){
-          menuToggle.checked = false; // ensure sidebar visible on desktop
-          document.body.classList.remove('sidebar-collapsed-mobile');
-        } else {
-          document.body.classList.toggle('sidebar-collapsed-mobile', menuToggle.checked);
-        }
-      }
-      menuToggle.addEventListener('change', syncOnResize);
-      window.addEventListener('resize', syncOnResize);
-      syncOnResize();
-
-      // Accessibility: allow Escape to close mobile sidebar
-   //   document.addEventListener('keydown', function(e){ if(e.key === 'Escape'){ menuToggle.checked = false; syncOnResize(); } });
-
-    })();
-  </script>
--->
-  <script src="assets/script.js"></script>
-</body>
-              </html>
+       <div class="dashboard">  
+    <aside class="sidebar">  
+      <h2>Categories List</h2>  
+      <nav>  
+        <ul>  
+          <li id="nav-construction" class="active" onclick="loadTool('construction.html', this)">Construction</li>  
+          <li id="nav-timber" onclick="loadTool('timber.html', this)">Timber</li>  
+          <li id="nav-measurement" onclick="loadTool('measurement.html', this)">Measurement</li>  
+          <li id="nav-soot-to-mm-to-inch-convert" onclick="loadTool('soot-to-mm-to-inch-convert.html', this)">SootInches Inches Convert</li>  
+          <li id="nav-Size-Wood-Calculation" onclick="loadTool('Size-Wood-Calculation.html', this)">Size Wood Calc -সাইজ কাঠ</li>  
+          <li id="nav-round-logs-measurement" onclick="loadTool('round-logs-measurement.html',this)">Roundund LOGS -গোলাই কাঠ</li>  
+        </ul>  
+      </nav>  
+      <button id="logoutBtn" onclick="logout()">Logout</button>  
+    </aside>  
+    <section class="content">  
+      <iframe src="tools/construction.html" id="toolFrame" title="Tool Display Area"></iframe>  
+    </section>  
+  </div>  
+  <footer>  
+    <nav>  
+      <a href="licenses.html">Licenses</a> |  
+      <a href="policy.html">Policy</a> |  
+      <a href="disclaimer.html">Disclaimer</a>  
+    </nav>  
+    &copy; 2025 AL-Madina Traders. All rights reserved.  
+  </footer>  
+  <script src="assets/script.js"></script>  
+</body>  
+</html>
