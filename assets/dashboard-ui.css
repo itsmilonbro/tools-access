@@ -133,4 +133,43 @@ button:hover { background: linear-gradient(90deg, #26c6da, var(--accent)); trans
   #menuToggle:checked ~ .dashboard .sidebar { transform: translateX(0); }
 
   /* show menu icon */
-  .menu-toggle{ display:inline-block; position
+  .menu-toggle{ display:inline-block; position }
+
+  /* Mobile/Tablet adjustments */
+@media (max-width: 1020px) {
+  .dashboard { flex-direction: row; }
+
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1200;
+    height: 100vh;
+    transform: translateX(-110%);
+    width: 82%;
+    max-width: 360px;
+    padding-top: 3.6rem;
+    box-shadow: 8px 0 60px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
+  }
+
+  /* যখন checkbox চেক হবে তখন sidebar দেখাও */
+  #menuToggle:checked ~ .dashboard .sidebar {
+    transform: translateX(0);
+  }
+
+  /* মেনু আইকন দেখাও */
+  .menu-toggle {
+    display: inline-block;
+    position: absolute;
+    left: 0.6rem;
+    top: 0.6rem;
+    background: #fff;
+    border: 1px solid #ddd;
+  }
+
+  .mobile-logout {
+    display: inline-block;
+  }
+}
