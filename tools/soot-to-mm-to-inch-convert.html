@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Soot Converter - Soot to mm and Inch</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      padding: 20px;
+    }
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+    h1 {
+      text-align: center;
+    }
+    .converter {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+    input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Soot Converter</h1>
+    <p>Convert Soot to Millimeters (mm) and Inches (inch)</p>
+    <div class="converter">
+      <div>
+        <label for="soot">Soot:</label>
+        <input type="number" id="soot" placeholder="Enter Soot value" step="any">
+      </div>
+      <div>
+        <label for="mm">Millimeters (mm):</label>
+        <input type="number" id="mm" placeholder="Enter mm value" step="any">
+      </div>
+      <div>
+        <label for="inch">Inches (inch):</label>
+        <input type="number" id="inch" placeholder="Enter inch value" step="any">
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    const sootInput = document.getElementById('soot');
+    const mmInput = document.getElementById('mm');
+    const inchInput = document.getElementById('inch');
+
+    // Update mm and inch when Soot value changes
+    function updateFromSoot() {
+      let soot = parseFloat(sootInput.value);
+      if (isNaN(soot)) {
+        mmInput.value = '';
+        inchInput.value = '';
+        return;
+      }
+      mmInput.value = (soot * 3.175).toFixed(3);
+      inchInput.value = (soot * 0.125).toFixed(3);
+    }
+
+    // Update soot and inch when mm value changes
+    function updateFromMM() {
+      let mm = parseFloat(mmInput.value);
+      if (isNaN(mm)) {
+        sootInput.value = '';
+        inchInput.value = '';
+        return;
+      }
+      sootInput.value = (mm * 0.315).toFixed(3); // since 1/3.175 ≈ 0.315
+      inchInput.value = (mm / 25.4).toFixed(3);
+    }
+
+    // Update soot and mm when inch value changes
+    function updateFromInch() {
+      let inch = parseFloat(inchInput.value);
+      if (isNaN(inch)) {
+        sootInput.value = '';
+        mmInput.value = '';
+        return;
+      }
+      sootInput.value = (inch * 8).toFixed(3);
+      mmInput.value = (inch * 25.4).toFixed(3);
+    }
+
+    // Attach event listeners for instant update on any change
+    sootInput.addEventListener('input', updateFromSoot);
+    mmInput.addEventListener('input', updateFromMM);
+    inchInput.addEventListener('input', updateFromInch);
+  </script>
+</body>
+</html>
