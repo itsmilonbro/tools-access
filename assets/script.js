@@ -7,9 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Simulated check - in production use secure backend
       const username = document.getElementById('username').value;
       const password = document.getElementById('password').value;
-      if (username === '01955255066' && password === '12345') 
-      if (!e.target.agree.checked) {
-      return alert('You must agree to the terms.');{
+      if (username === '01955255066' && password === '12345') {
         localStorage.setItem('loggedIn', 'true');
         window.location.href = 'dashboard.html';
       } else {
