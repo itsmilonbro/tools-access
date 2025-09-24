@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="bn, en-us">
+<html lang="bn, "en-us">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -93,9 +93,9 @@ table { width:90%;
   </style>
 </head>
 <body>
-
   <h2>Round Logs Calc. -গোলাই গাছের হিসাব</h2>
-<p>Development by <b><a href="https://facebook.com/itsmilonbro" >Freelancer Milon</a></b></p>
+  <p>Sponsor & Media Partner <a href="https://almadinatraders-savar.blogspot.com/p/about-us.html">AL-Madina Traders</p>
+<p>Dev and Published by <a href="https://facebook.com/itsmilonbro" >Freelancer Milon</a></b></p>
   <table id="calcTable">
     <thead>
       <tr>
@@ -103,7 +103,7 @@ table { width:90%;
         <th>লম্বা (ফুট)</th>
         <th>পিছ</th>
         <th>সিএফটি</th>
-        <th>দাম</th>
+        <th>দাম (টাকা)</th>
       </tr>
     </thead>
     <tbody id="calc-body">
@@ -148,19 +148,18 @@ table { width:90%;
       tbody.appendChild(row);
     }
 
-    // function adjustBer(value) {
-        // let v = parseFloat(value);
-     //  if (isNaN(v)) return 0;
-   // if (v >= 0 && v <= 16) return v - 1;
-    // if (v >= 17 && v <= 29) return v - 2;
-     //  if (v >= 30 && v <= 41) return v - 3;
-    // if (v >= 42 && v <= 53) return v - 4;
-   //  if (v >= 54 && v <= 65) return v - 5;
-   //  if (v >= 66 && v <= 77) return v - 6;
-    // if (v >= 78 && v <= 89) return v - 7;
-   // if (v >= 90 && v <= 101) return v - 8;
-  // if (v >= 102 && v <= 113) return v - 9;
-  // if (v >= 11
+ function adjustBer(value) {
+   let v = parseFloat(value);
+  if (isNaN(v)) return 0;
+  if (v >= 0 && v <= 16) return v - 0;if (v >= 17 && v <= 29) return v - 0;
+  if (v >= 30 && v <= 41) return v - 0;
+  if (v >= 42 && v <= 53) return v - 0;
+  if (v >= 54 && v <= 65) return v - 0;
+  if (v >= 66 && v <= 77) return v - 0;
+  if (v >= 78 && v <= 89) return v - 0;
+  if (v >= 90 && v <= 101) return v - 0;
+  if (v >= 102 && v <= 113) return v - 0;
+  if (v >= 11
 
 function calculate() {
       let rows = tbody.querySelectorAll("tr");
