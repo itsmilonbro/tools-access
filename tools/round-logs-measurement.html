@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="bn, en-us">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Round Logs/Timber Calculation, গোলাই কাঠের নির্ভুল হিসাব নির্নয় - Freelancer Milon</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7f9;
+      padding: 20px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: white;
+background: #0077b6
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    th, td {
+      border: 1.5px solid #ddd;
+      padding: 8px;
+      text-align: center;
+      font-size: 14px;
+    }
+    th {
+      background: #0077b6;
+      color: #fff;
+    }
+    input {
+      width: 100%;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      text-align: center;
+    }
+    input[readonly] {
+      background: #f1f1f1;
+      color: #444;
+    }
+    .summary {
+      margin-top: 20px;
+      background: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .summary label {
+      font-weight: bold;
+    }
+    .summary input {
+      width: auto;
+      display: inline-block;
+      margin-left: 10px;
+    }
+    .buttons {
+      margin-top: 15px;
+      text-align: center;
+    }
+    button {
+      background: #0077b6;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      margin: 5px;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #005f8a;
+    }
+    @media (max-width: 600px) {
+      table, th, td {
+        font-size: 12px;
+      }
+table { width:90%;
+}
+      input {
+        font-size: 12px;
+        padding: 3px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Round Logs Calc. -গোলাই গাছের হিসাব</h2>
+<p>Development by <b><a href="https://facebook.com/itsmilonbro" >Freelancer Milon</a></b></p>
+  <table id="calcTable">
+    <thead>
+      <tr>
+        <th>বেড় (ইঞ্চি)</th>
+        <th>লম্বা (ফুট)</th>
+        <th>পিছ</th>
+        <th>সিএফটি</th>
+        <th>দাম</th>
+      </tr>
+    </thead>
+    <tbody id="calc-body">
+      <!-- Rows will be inserted by JS -->
+    </tbody>
+  </table>
+
+  <div class="summary">
+    <label>Total Quantity (সর্বমোট কাঠ):</label>
+    <input type="text" id="totalSum" readonly>
+    <br><br>
+    <label>Unit Price (দাম প্রতি সিএফটি):</label>
+    <input type="number" id="priceInput" placeholder="Enter Price (দাম লিখুন) ">
+    <br><br>
+    <label>Total Price (সর্বমোট দাম) :</label>
+    <input type="text" id="grandTotal" readonly>
+  </div>
+
+  <div class="buttons">
+    <button onclick="resetForm()">Reset -হিসাব মুছুন</button>
+    <button onclick="savePDF()">Save PDF -হিসাব ফোনে সেভ করুন</button>
+  </div>
+
+  <!-- jsPDF + autotable -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+
+  <script>
+    const tbody = document.getElementById("calc-body");
+    const priceInput = document.getElementById("priceInput");
+
+    // Insert 20 rows
+    for (let i = 0; i < 20; i++) {
+      let row = document.createElement("tr");
+      row.innerHTML = `
+        <td><input type="number" class="ber"></td>
+        <td><input type="number" class="foot"></td>
+        <td><input type="number" class="pich"></td>
+        <td><input type="text" class="result" readonly></td>
+        <td><input type="text" class="rowPrice" readonly></td>
+      `;
+      tbody.appendChild(row);
+    }
+
+    // function adjustBer(value) {
+        // let v = parseFloat(value);
+     //  if (isNaN(v)) return 0;
+   // if (v >= 0 && v <= 16) return v - 1;
+    // if (v >= 17 && v <= 29) return v - 2;
+     //  if (v >= 30 && v <= 41) return v - 3;
+    // if (v >= 42 && v <= 53) return v - 4;
+   //  if (v >= 54 && v <= 65) return v - 5;
+   //  if (v >= 66 && v <= 77) return v - 6;
+    // if (v >= 78 && v <= 89) return v - 7;
+   // if (v >= 90 && v <= 101) return v - 8;
+  // if (v >= 102 && v <= 113) return v - 9;
+  // if (v >= 11
+
+function calculate() {
+      let rows = tbody.querySelectorAll("tr");
+      let total = 0;
+      let totalPrice = 0;
+      rows.forEach(row => {
+        let ber = row.querySelector(".ber").value;
+        let foot = row.querySelector(".foot").value;
+        let pich = row.querySelector(".pich").value;
+        let resultField = row.querySelector(".result");
+        let rowPriceField = row.querySelector(".rowPrice");
+
+        let adjBer = adjustBer(ber);
+        let f = parseFloat(foot) || 0;
+        let p = parseFloat(pich) || 0;
+
+        let res = (adjBer * adjBer * f * p) / 2304;
+        if (!isNaN(res) && res > 0) {
+          resultField.value = res.toFixed(2);
+          total += res;
+
+          let unitPrice = parseFloat(priceInput.value) || 0;
+          let rowPrice = res * unitPrice;
+          rowPriceField.value = rowPrice > 0 ? rowPrice.toFixed(2) : "";
+          totalPrice += rowPrice;
+        } else {
+          resultField.value = "";
+          rowPriceField.value = "";
+        }
+      });
+      document.getElementById("totalSum").value = total.toFixed(2);
+      document.getElementById("grandTotal").value = totalPrice.toFixed(2);
+    }
+
+    function resetForm() {
+      document.querySelectorAll("input").forEach(input => input.value = "");
+    }
+
+    async function savePDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      doc.text("Round Logs Calculation -গোলাই কাঠের হিসাব", 14, 15);
+
+      // Prepare table data from DOM
+      let rows = [];
+      tbody.querySelectorAll("tr").forEach(row => {
+        let ber = row.querySelector(".ber").value || "";
+        let foot = row.querySelector(".foot").value || "";
+        let pich = row.querySelector(".pich").value || "";
+        let result = row.querySelector(".result").value || "";
+        let rowPrice = row.querySelector(".rowPrice").value || "";
+        if (ber || foot || pich || result) {
+          rows.push([ber, foot, pich, result, rowPrice]);
+        }
+      });
+
+      doc.autoTable({
+        head: [["বেড় (ইঞ্চি)", "লম্বা (ফুট)", "পিছ", "সিএফটি", "দাম"]],
+        body: rows,
+        startY: 20,
+        styles: { fontSize: 8 }
+      });
+
+      doc.text("Total Quantity: " + document.getElementById("totalSum").value, 14, doc.lastAutoTable.finalY + 10);
+      doc.text("Unit Price: " + (priceInput.value || 0), 14, doc.lastAutoTable.finalY + 20);
+      doc.text("Grand Total Price: " + document.getElementById("grandTotal").value, 14, doc.lastAutoTable.finalY + 30);
+
+      doc.save("calculation-গোলাই কাঠের হিসাব.pdf");
+    }
+
+    document.addEventListener("input", calculate);
+  </script>
+
+</body>
+  </html>
