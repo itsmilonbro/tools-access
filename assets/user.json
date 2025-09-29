@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Milon",
+    "phone": "01955255066",
+    "password": "12345",
+    "expiry": "2025-10-15",
+    "loginHistory": ["2025-09-25T20:00:00"]
+  },
+  {
+    "name": "Rafi",
+    "phone": "01811111111",
+    "password": "rafi456",
+    "expiry": "2025-09-30",
+    "loginHistory": ["2025-09-24T18:30:00"]
+  }
+]
