@@ -47,5 +47,15 @@ function deleteUser(index) {
     renderUsers();
   }
 }
+function editUser(index) {
+  const user = users[index];
+  editIndex = index;
+  document.getElementById('editName').value = user.name;
+  document.getElementById('editPhone').value = user.phone;
+  document.getElementById('editPassword').value = user.password;
+  document.getElementById('editExpiry').value = user.expiry;
+
+  
+}
 
 renderUsers();
