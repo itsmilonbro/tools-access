@@ -21,6 +21,14 @@
   <button onclick="addUser()" class="btn btn-success">Add User</button>
 </div>
 <br>
+    <div class="mb-4">
+  <h4>Edit User</h4>
+  <input type="text" id="editName" placeholder="Name" class="form-control mb-2">
+  <input type="text" id="editPhone" placeholder="Phone Number" class="form-control mb-2">
+  <input type="text" id="editPassword" placeholder="Password" class="form-control mb-2">
+  <input type="date" id="editExpiry" class="form-control mb-2">
+  <button onclick="editUser()" class="btn btn-success">Update User</button>
+</div>
 <table class="table table-striped">
       <thead><tr><th>Name</th><th>Phone</th><th>Expiry</th><th>Actions</th></tr></thead>
       <tbody id="userTable"></tbody>
