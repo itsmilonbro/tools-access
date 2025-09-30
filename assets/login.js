@@ -25,7 +25,7 @@ function loginUser() {
     if (user.phone === "01955255066") {
       window.location.href = 'admin.html';
     } else {
-      window.location.href = 'dashboard.html';
+      window.location.href = 'dashboard-webapp.html';
     }
   }
 }
